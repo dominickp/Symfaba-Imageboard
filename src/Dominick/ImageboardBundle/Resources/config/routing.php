@@ -9,4 +9,8 @@ $collection->add('dominick_imageboard_homepage', new Route('/hello/{name}', arra
     '_controller' => 'DominickImageboardBundle:Default:index',
 )));
 
+$collection->add('dominick_imageboard_homepage', new Route('/test/', array(
+    '_controller' => 'DominickImageboardBundle:Default:index',
+)));
+
 return $collection;
