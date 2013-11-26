@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset={{ _charset }}"/>
+    <meta name="robots" content="noindex,nofollow"/>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ asset('bundles/framework/css/structure.css') }}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{{ asset('bundles/framework/css/body.css') }}" rel="stylesheet" type="text/css" media="all"/>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div id="pageContent" class="container">
+    <div class="header clear-fix">
+        <div class="header-logo">
+            Logo here
+        </div>
+    </div>
+    {% block navbar %}
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            {% if app.debug %}
+            {% endif %}
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li {% if app.request.get('_route') == 'imageboard_homepage' or app.request.get('_route') == 'dominick_roommate_apartmenthome' %}class="active"{% else %}{% endif %}>
+                        <a href="{{ path('imageboard_homepage') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    {% if app.user %}
+                    {% else %}
+                        <li {% if app.request.get('_route') == 'imageboard_user_register' %}class="active"{% else %}{% endif %}>
+                            <a href="{{ path('imageboard_user_register') }}"><span class="glyphicon glyphicon-home"></span> Register</a>
+                        </li>
+                    {% endif %}</p>
+                </ul>
+
+                <p class="navbar-text pull-right">
+                    {% if app.user %}
+                        Signed in as {{ app.user.displayname }}
+                    {% else %}
+                        Welcome
+                    {% endif %}</p>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+    {% endblock %}
+
+    {% block body %}{% endblock %}
+
+</div>
+<br>
+{% block footer %}
+    <div id="footer" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                Roommate Expense Tracker - <a href="https://github.com/dominickp/p4.kaomoj.in" target="_blank">GitHub</a> - &copy; 2013 Dominick Peluso - Project 4 for <a href="http://dwa15.com/" target="_blank">CSCI E-15 Dynamic Web Applications</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

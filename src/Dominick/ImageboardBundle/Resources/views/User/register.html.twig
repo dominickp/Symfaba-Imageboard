@@ -1,1 +1,9 @@
-{{ form(form) }}
+{% extends "DominickImageboardBundle::layout.html.twig" %}
+
+{% block title "Roommate Expense Tracker" %}
+
+    {% block content_header '' %}
+
+        {% block content %}
+            {{ form(form) }}
+        {% endblock %}

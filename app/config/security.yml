@@ -36,9 +36,5 @@ security:
     access_control:
         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /user, roles: ROLE_USER }
-        - { path: /residence/*, roles: ROLE_USER }
-        - { path: /expense/*, roles: ROLE_USER }
-        - { path: /payment/*, roles: ROLE_USER }
-        - { path: /account/*, roles: ROLE_USER }
         - { path: /admin, roles: ROLE_ADMIN }
         - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }

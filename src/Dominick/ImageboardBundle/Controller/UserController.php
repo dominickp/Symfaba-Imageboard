@@ -24,15 +24,11 @@ class UserController extends Controller
 
     public function registerAction()
     {
-        //$request = $this->getRequest();
         $request = $this->container->get('request');
         $session = $request->getSession();
         $session->start();
 
         $user = new User();
-
-        // This is how you auto fill form data
-        // $task->setTask('Write a blog post');
 
         $form = $this->createFormBuilder($user)
             ->add('username', 'email')
@@ -45,15 +41,11 @@ class UserController extends Controller
             ->add('Register', 'submit')
             ->getForm();
 
-        // If initially loading the page, handleRequest() recognizes that the form was not submitted and does nothing.
-        // When the user submits the form, handleRequest() recognizes this and immediately writes the submitted data
-        // back into the task and dueDate properties of the $task object.
         $form->handleRequest($request);
 
-        // If the form is valid, we should be submitting the data, right?
+
         if ($form->isValid())
         {
-
 
             $user = $form->getData();
 
@@ -72,17 +64,12 @@ class UserController extends Controller
             // Call the addRole method with the role I've selected
             $user->addRole($default_role);
 
-            // Get the entity manager
             $em = $this->getDoctrine()->getManager();
             // Save the new row you created when you initialized User
             $em->persist($user);
-            // Fire!
             $em->flush();
 
-            // You did a great jerrrb.
-            return $this->redirect($this->generateUrl('dominick_roommate_loggedin'));
-        } else {
-
+            return $this->redirect($this->generateUrl('imageboard_homepage'));
         }
 
         return $this->render('DominickImageboardBundle:User:register.html.twig', array(

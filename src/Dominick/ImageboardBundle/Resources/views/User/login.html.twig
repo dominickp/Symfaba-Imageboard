@@ -1,0 +1,24 @@
+{% extends "DominickImageboardBundle::layout.html.twig" %}
+
+{% block title "Roommate Expense Tracker" %}
+
+    {% block content_header '' %}
+
+        {% block content %}
+            <div class="row">
+                <div class="col-md-4">
+                    {% if error %}
+                        <div>{{ error.message }}</div>
+                    {% endif %}
+                    <h3>Please login</h3>
+                    <form action="{{ path('account_login_check') }}" method="post">
+                        <label for="username">Email:</label>
+                        <input class="form-control" id="username" type="text" name="_username" value="{{ last_username }}"/>
+                        <label for="password">Password:</label>
+                        <input class="form-control" id="password" type="password" name="_password"/>
+
+                        <p></p><input class="btn btn-primary" type="submit" name="login" value="Login"/></p>
+                    </form>
+                </div>
+            </div>
+        {% endblock %}

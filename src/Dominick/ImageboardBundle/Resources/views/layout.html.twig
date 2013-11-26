@@ -1,0 +1,37 @@
+{% extends "DominickImageboardBundle::template.html.twig" %}
+
+{% block head %}
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}"/>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+    <link rel="icon" type="image/icon" href="{{ asset('img/favicon.ico') }}">
+{% endblock %}
+
+{% block title 'Imageboard' %}
+
+    {% block body %}
+
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-message">
+                <em>Notice</em>: {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+        {% block content_header %}
+
+        {% endblock %}
+
+
+        {% block content %}{% endblock %}
+
+
+        {% if code is defined %}
+            <h2>Code behind this page</h2>
+            <div class="block">
+                <div class="symfony-content">{{ code|raw }}</div>
+            </div>
+        {% endif %}
+    {% endblock %}
