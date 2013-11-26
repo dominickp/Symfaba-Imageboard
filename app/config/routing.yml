@@ -1,0 +1,4 @@
+dominick_imageboard:
+    resource: "@DominickImageboardBundle/Resources/config/routing.php"
+    prefix:   /
+
