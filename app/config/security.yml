@@ -1,39 +1,44 @@
+# app/config/security.yml
 security:
-    encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN: [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        user_db:
+            entity: { class: DominickImageboardBundle:User, property: username }
+
+
+    encoders:
+        Dominick\ImageboardBundle\Entity\User:
+          algorithm:        sha256
+          encode_as_base64: true
+          iterations:       50
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
-
-        secured_area:
-            pattern:    ^/demo/secured/
+        main:
+            pattern: /.*
+            provider: user_db
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
+                login_path: /login
+                check_path: /login_check
+                remember_me: true
             logout:
-                path:   _demo_logout
-                target: _demo
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
-
+                path: /logout
+                target: /
+            remember_me:
+                key: MiPassphrase
+                lifetime: 1800
+                path: /.*
+                domain: ~
+            security: true
+            anonymous: true
     access_control:
-        - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /user, roles: ROLE_USER }
+        - { path: /residence/*, roles: ROLE_USER }
+        - { path: /expense/*, roles: ROLE_USER }
+        - { path: /payment/*, roles: ROLE_USER }
+        - { path: /account/*, roles: ROLE_USER }
+        - { path: /admin, roles: ROLE_ADMIN }
+        - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
