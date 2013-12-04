@@ -61,7 +61,8 @@ class UserController extends Controller
 
             // Set the default role for this type of registration
             $default_role = $this->getDoctrine()->getRepository('DominickImageboardBundle:Role')->findOneBy(array('role' => 'ROLE_USER'));
-            // Call the addRole method with the role I've selected
+
+			// Call the addRole method with the role I've selected
             $user->addRole($default_role);
 
             $em = $this->getDoctrine()->getManager();
