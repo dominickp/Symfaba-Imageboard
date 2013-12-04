@@ -322,27 +322,4 @@ class User implements AdvancedUserInterface, \Serializable
         return $this->isActive;
     }
 
-
-    /**
-     * Set created
-     *
-     * @param \DateTime $created
-     * @return User
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-    
-        return $this;
-    }
-
-    /**
-     * Remove roles
-     *
-     * @param \Dominick\ImageboardBundle\Entity\Role $roles
-     */
-    public function removeRole(\Dominick\ImageboardBundle\Entity\Role $roles)
-    {
-        $this->roles->removeElement($roles);
-    }
 }
