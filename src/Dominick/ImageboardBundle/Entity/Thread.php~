@@ -37,7 +37,7 @@ class Thread
 	 * @ORM\Column(type="string", length=255)
 	 * @var string
 	 */
-	private $image;
+	protected $image;
 
 	/**
 	 * @Assert\NotBlank()
@@ -66,6 +66,12 @@ class Thread
 	 * @var \DateTime
 	 */
 	protected $updated;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="thread")
+	 * @var ArrayCollection
+	 */
+	protected $replies;
 
 	public function __construct()
 	{
@@ -198,5 +204,61 @@ class Thread
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Thread
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Add replies
+     *
+     * @param \Dominick\ImageboardBundle\Entity\Reply $replies
+     * @return Thread
+     */
+    public function addReplie(\Dominick\ImageboardBundle\Entity\Reply $replies)
+    {
+        $this->replies[] = $replies;
+    
+        return $this;
+    }
+
+    /**
+     * Remove replies
+     *
+     * @param \Dominick\ImageboardBundle\Entity\Reply $replies
+     */
+    public function removeReplie(\Dominick\ImageboardBundle\Entity\Reply $replies)
+    {
+        $this->replies->removeElement($replies);
+    }
+
+    /**
+     * Get replies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReplies()
+    {
+        return $this->replies;
     }
 }

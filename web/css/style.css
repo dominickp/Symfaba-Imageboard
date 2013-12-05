@@ -1,8 +1,38 @@
 #latestThreads{
-    background-color:red;
 }
-#latestThreads .threadImage{
+.threadImage{
     max-height: 250px;
     max-width: 250px;
     float: left;
+    margin-right: 30px;
+    margin-bottom:30px;
+}
+.replyImage{
+    max-height: 180px;
+    max-width: 180px;
+    float: left;
+    margin-right: 30px;
+}
+.author{
+    color: tomato;
+    font-weight: bold;
+}
+.reply {
+    background-color: #EEE;
+    float: left;
+    min-width: 40%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+#latestThreads .thread{
+    border-bottom:1px solid #CCC;
+    margin-bottom:15px;
+    padding-bottom: 15px;
+}
+.thread .threadHeader, .reply .replyHeader{
+    margin-bottom:15px;
+}
+.replyButton{
+    float:right;
 }

@@ -67,6 +67,12 @@ class Thread
 	 */
 	protected $updated;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="thread")
+	 * @var ArrayCollection
+	 */
+	protected $replies;
+
 	public function __construct()
 	{
 		$this->created = new \DateTime("now");
@@ -221,5 +227,38 @@ class Thread
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Add replies
+     *
+     * @param \Dominick\ImageboardBundle\Entity\Reply $replies
+     * @return Thread
+     */
+    public function addReplies(\Dominick\ImageboardBundle\Entity\Reply $replies)
+    {
+        $this->replies[] = $replies;
+    
+        return $this;
+    }
+
+    /**
+     * Remove replies
+     *
+     * @param \Dominick\ImageboardBundle\Entity\Reply $replies
+     */
+    public function removeReplies(\Dominick\ImageboardBundle\Entity\Reply $replies)
+    {
+        $this->replies->removeElement($replies);
+    }
+
+    /**
+     * Get replies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReplies()
+    {
+        return $this->replies;
     }
 }

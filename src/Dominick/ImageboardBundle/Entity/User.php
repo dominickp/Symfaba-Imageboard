@@ -84,6 +84,12 @@ class User implements AdvancedUserInterface, \Serializable
 	 */
 	protected $threads;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="user")
+	 * @var ArrayCollection
+	 */
+	protected $replies;
+
     public function __construct()
     {
         $this->isActive = true;

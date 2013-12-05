@@ -6,18 +6,38 @@
 
         {% block content %}
             You are now viewing the homepage
-            <hr>
+            <br>
             <div id="latestThreads">
+
                 <h2>Latest threads</h2>
+                <hr>
                 {% for thread in threads %}
                     <div class="thread" id="{{thread.id}}">
                         <img class="threadImage" src="{{ asset('img_data/thread/'~thread.image) }}">
-                        Author: <span class="author">{{thread.user.getDisplayName}}</span>
-                        Subject: <span class="subject">{{thread.subject}}</span>
-                        Id: <span class="threadId">{{thread.id}}</span>
-                        Date: <span class="threadId">{{thread.created|date('Y-m-d')}}</span>
-                        Message: <p class="message">{{thread.message}}</p>
+                        <div class="threadHeader">
+                            <a class="threadId" href="{{ path('imageboard_thread_new', {'id':thread.id}) }}">No.{{thread.id}}</a> // <span class="subject">{{thread.subject}}</span> <a class="btn btn-default replyButton" href="{{ path('imageboard_thread_new', {'id':thread.id}) }}"><span class="glyphicon glyphicon-comment"></span> Reply</a>
+                            <br>
+                            <span class="author">{{thread.user.getDisplayName}}</span>
+                            <span class="threadId">{{thread.created|date('m-d-Y G:iA')}}</span>
+                        </div>
+                        <p class="message">{{thread.message}}</p>
+
+                        {% for reply in thread.getReplies %}
+                            <div class="reply">
+                                <img class="replyImage" src="{{ asset('img_data/reply/'~reply.image) }}">
+                                <div class="replyHeader">
+                                    <span class="threadId">No.{{reply.id}}</span>
+                                    <span class="author">{{reply.user.getDisplayName}}</span>
+                                    <span class="threadId">{{reply.created|date('m-d-Y G:iA')}}</span>
+                                </div>
+                                <p class="message">{{ reply.message }}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        {% endfor %}
+
+                        <div class="clearfix"></div>
                     </div>
+
                 {% endfor %}
             </div>
         {% endblock %}
