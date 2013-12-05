@@ -32,7 +32,7 @@ class ThreadController extends Controller
 
 		$form = $this->createFormBuilder($thread)
 			->add('subject', 'text')
-			->add('message', 'text')
+			->add('message', 'textarea')
 			->add('image', 'file')
 
 			->add('Submit', 'submit')
@@ -49,17 +49,13 @@ class ThreadController extends Controller
 			// Move to this directory once upload is successful
 			$dir =  $this->get('kernel')->getRootDir() . '/../web'.'/img_data/thread/';
 
-		//	include($dir.'test.txt');
 			// Sanitize and keep the original file name
-			//$originalImageName = htmlspecialchars($thread['image']->getData()->getClientOriginalName());
+			$originalImageName = time().'_'.htmlspecialchars($form['image']->getData()->getClientOriginalName());
 			// Move to the thread image directory
+			$form['image']->getData()->move($dir, $originalImageName);
 
-		//	print_r($dir); die;
-
-			$form['image']->getData()->move($dir, 'test.jpg');
-
-
-
+			// Set the file name in the database
+			$thread->setImage($originalImageName);
 
 
 

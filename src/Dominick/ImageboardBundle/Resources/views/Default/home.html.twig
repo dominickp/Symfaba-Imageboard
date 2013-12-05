@@ -7,14 +7,17 @@
         {% block content %}
             You are now viewing the homepage
             <hr>
-            <h2>Latest threads</h2>
-            {% for thread in threads %}
-                <div class="thread" id="{{thread.id}}">
-                    <img class="threadImage" src="{{ asset('img_data/thread/'~thread.image) }}">
-                    Subject: <span class="subject">{{thread.subject}}</span>
-                    Id: <span class="threadId">{{thread.id}}</span>
-                    Message: <p class="message">{{thread.message}}</p>
-                </div>
-
-            {% endfor %}
+            <div id="latestThreads">
+                <h2>Latest threads</h2>
+                {% for thread in threads %}
+                    <div class="thread" id="{{thread.id}}">
+                        <img class="threadImage" src="{{ asset('img_data/thread/'~thread.image) }}">
+                        Author: <span class="author">{{thread.user.getDisplayName}}</span>
+                        Subject: <span class="subject">{{thread.subject}}</span>
+                        Id: <span class="threadId">{{thread.id}}</span>
+                        Date: <span class="threadId">{{thread.created|date('Y-m-d')}}</span>
+                        Message: <p class="message">{{thread.message}}</p>
+                    </div>
+                {% endfor %}
+            </div>
         {% endblock %}

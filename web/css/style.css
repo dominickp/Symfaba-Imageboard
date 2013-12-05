@@ -1,0 +1,8 @@
+#latestThreads{
+    background-color:red;
+}
+#latestThreads .threadImage{
+    max-height: 250px;
+    max-width: 250px;
+    float: left;
+}
