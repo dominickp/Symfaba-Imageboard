@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity
@@ -28,6 +29,7 @@ class Thread
 	 * @var User
 	 */
 	protected $user;
+
 
 	/**
 	 * @Assert\NotBlank()
@@ -65,6 +67,12 @@ class Thread
 	 */
 	protected $updated;
 
+	public function __construct()
+	{
+		$this->created = new \DateTime("now");
+		$this->updated = new \DateTime("now");
+	}
+
 
     /**
      * Get id
@@ -76,28 +84,6 @@ class Thread
         return $this->id;
     }
 
-    /**
-     * Set image
-     *
-     * @param string $image
-     * @return Thread
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
 
     /**
      * Set subject
@@ -212,5 +198,28 @@ class Thread
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Thread
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

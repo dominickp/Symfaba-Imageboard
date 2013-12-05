@@ -5,7 +5,6 @@ namespace Dominick\ImageboardBundle\Controller;
 // Stuff for DB insert
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Dominick\ImageboardBundle\Entity\User;
-use Dominick\ImageboardBundle\Entity\Apartment;
 use Dominick\ImageboardBundle\Entity\Role;
 use Symfony\Component\HttpFoundation\Response;
 

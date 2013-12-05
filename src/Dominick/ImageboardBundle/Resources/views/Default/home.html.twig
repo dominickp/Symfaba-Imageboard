@@ -6,4 +6,15 @@
 
         {% block content %}
             You are now viewing the homepage
+            <hr>
+            <h2>Latest threads</h2>
+            {% for thread in threads %}
+                <div class="thread" id="{{thread.id}}">
+                    <img class="threadImage" src="{{ asset('img_data/thread/'~thread.image) }}">
+                    Subject: <span class="subject">{{thread.subject}}</span>
+                    Id: <span class="threadId">{{thread.id}}</span>
+                    Message: <p class="message">{{thread.message}}</p>
+                </div>
+
+            {% endfor %}
         {% endblock %}

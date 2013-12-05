@@ -8,6 +8,18 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('DominickImageboardBundle:Default:home.html.twig', array('name' => 'test'));
+		// Display the last 10 threads
+		$threads = $this->getDoctrine()
+			->getRepository('DominickImageboardBundle:Thread')
+			//    ->findAll();
+			->findBy(
+				array(), // $where
+				array('created' => 'ASC'), // $orderBy
+				10, // $limit
+				0 // $offset
+			);
+
+
+        return $this->render('DominickImageboardBundle:Default:home.html.twig', array('threads' => $threads));
     }
 }
