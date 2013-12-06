@@ -14,7 +14,7 @@ class DefaultController extends Controller
 			//    ->findAll();
 			->findBy(
 				array(), // $where
-				array('created' => 'DESC'), // $orderBy
+				array('updated' => 'DESC'), // $orderBy
 				10, // $limit
 				0 // $offset
 			);

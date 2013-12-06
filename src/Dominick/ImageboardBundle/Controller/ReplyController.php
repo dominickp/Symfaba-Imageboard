@@ -70,6 +70,9 @@ class ReplyController extends Controller
 			$currentUser = $this->getUser();
 			$reply->setUser($currentUser);
 
+            // Set thread as updated
+            $reply->getThread()->setUpdated(new \DateTime("now"));
+
 			$em = $this->getDoctrine()->getManager();
 
 			// Save the new thread

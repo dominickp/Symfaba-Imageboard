@@ -90,7 +90,7 @@ class ThreadController extends Controller
             ->getRepository('DominickImageboardBundle:Reply')
             ->findBy(
                 array('thread' => $id), // $where
-                array('created' => 'DESC'), // $orderBy
+                array('created' => 'ASC'), // $orderBy
                 999, // $limit
                 0 // $offset
             );
