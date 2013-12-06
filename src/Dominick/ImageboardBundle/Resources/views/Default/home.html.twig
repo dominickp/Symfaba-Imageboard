@@ -5,6 +5,10 @@
     {% block content_header '' %}
 
         {% block content %}
+
+            {{ render(controller('DominickImageboardBundle:Thread:new')) }}
+
+
             You are now viewing the homepage
             <br>
             <div id="latestThreads">

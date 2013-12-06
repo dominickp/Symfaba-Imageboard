@@ -72,7 +72,7 @@ class ThreadController extends Controller
 			return $this->redirect($this->generateUrl('imageboard_homepage'));
 		}
 
-		return $this->render('DominickImageboardBundle:User:register.html.twig', array(
+		return $this->render('DominickImageboardBundle:Thread:thread_new.html.twig', array(
 			'form' => $form->createView(),
 		));
 	}

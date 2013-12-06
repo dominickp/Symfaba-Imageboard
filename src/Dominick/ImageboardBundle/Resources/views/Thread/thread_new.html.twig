@@ -1,0 +1,8 @@
+<form action="{{ path('imageboard_thread_new') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+    {{ form_rest(form)}}
+    {{ form_row(form.subject) }}
+    {{ form_row(form.message) }}
+    {{ form_row(form.image) }}
+    {{ form_row(form.Submit) }}
+</form>
