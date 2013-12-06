@@ -22,7 +22,9 @@
                         </div>
                         <p class="message">{{thread.message}}</p>
                         {% if thread.getReplies|length > 3 %}
-                            <div class="moreReplies">There are {{thread.getReplies|length - 3}} replies not shown here. Click <a href="{{ path('imageboard_reply_new', {'id':thread.id}) }}">reply</a> to view the entire thread. </div>
+                            <div>
+                                <span class="moreReplies">There are {{thread.getReplies|length - 3}} replies not shown here. Click <a href="{{ path('imageboard_reply_new', {'id':thread.id}) }}">reply</a> to view the entire thread. </span>
+                            </div>
                         {% endif %}
                         {% for reply in thread.previewReplies %}
                             <div class="reply">

@@ -36,3 +36,11 @@
 .replyButton{
     float:right;
 }
+.moreReplies {
+    display: inline-block;
+    padding: 0 5px;
+    border-radius: 3px;
+    color: darkslateblue;
+    font-size: 90%;
+    font-style: italic;
+}
