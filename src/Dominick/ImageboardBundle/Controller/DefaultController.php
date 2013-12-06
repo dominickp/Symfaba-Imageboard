@@ -19,6 +19,24 @@ class DefaultController extends Controller
 				0 // $offset
 			);
 
+        foreach($threads as &$thread)
+        {
+            $threadId = $thread->getId();
+
+            // Display the last 3 replies
+            $previewReplies = $this->getDoctrine()
+                ->getRepository('DominickImageboardBundle:Reply')
+                ->findBy(
+                    array('thread' => $threadId), // $where
+                    array('created' => 'DESC'), // $orderBy
+                    3, // $limit
+                    0 // $offset
+                );
+            $previewReplies = array_reverse($previewReplies);
+            $thread->previewReplies = $previewReplies;
+            //var_dump($replies);
+        }
+
 
         return $this->render('DominickImageboardBundle:Default:home.html.twig', array('threads' => $threads));
     }

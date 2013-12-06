@@ -21,12 +21,12 @@ $collection->add('account_login_check', new Route('/login_check'));
 $collection->add('account_logout', new Route('/logout'));
 
 // Thread
-$collection->add('imageboard_thread_new', new Route('/new/', array(
+$collection->add('imageboard_thread_new', new Route('/new', array(
 	'_controller' => 'DominickImageboardBundle:Thread:new',
 )));
 
 // Reply
-$collection->add('imageboard_thread_new', new Route('/reply/{id}', array(
+$collection->add('imageboard_reply_new', new Route('/reply/{id}', array(
 	'_controller' => 'DominickImageboardBundle:Reply:new',
 )));
 

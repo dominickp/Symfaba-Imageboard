@@ -261,4 +261,5 @@ class Thread
     {
         return $this->replies;
     }
+
 }
