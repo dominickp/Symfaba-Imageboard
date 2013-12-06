@@ -19,7 +19,7 @@
                     <div class="thread" id="{{thread.id}}">
                         <img class="threadImage" src="{{ asset('img_data/thread/'~thread.image) }}">
                         <div class="threadHeader">
-                            <a class="threadId" href="{{ path('imageboard_reply_new', {'id':thread.id}) }}">No.{{thread.id}}</a> // <span class="subject">{{thread.subject}}</span> <a class="btn btn-default replyButton" href="{{ path('imageboard_reply_new', {'id':thread.id}) }}"><span class="glyphicon glyphicon-comment"></span> Reply</a>
+                            <a class="threadId" href="{{ path('imageboard_thread_view', {'id':thread.id}) }}">No.{{thread.id}}</a> // <span class="subject">{{thread.subject}}</span> <a class="btn btn-default replyButton" href="{{ path('imageboard_thread_view', {'id':thread.id}) }}"><span class="glyphicon glyphicon-comment"></span> Reply</a>
                             <br>
                             <span class="author">{{thread.user.getDisplayName}}</span>
                             <span class="threadId">{{thread.created|date('m-d-Y G:iA')}}</span>

@@ -76,4 +76,27 @@ class ThreadController extends Controller
 			'form' => $form->createView(),
 		));
 	}
+
+    public function viewThreadAction($id)
+    {
+        // Display the last 10 threads
+        $thread = $this->getDoctrine()
+            ->getRepository('DominickImageboardBundle:Thread')
+            //    ->findAll();
+            ->find(array('id' => $id) // $orderBy
+            );
+
+        $replies = $this->getDoctrine()
+            ->getRepository('DominickImageboardBundle:Reply')
+            ->findBy(
+                array('thread' => $id), // $where
+                array('created' => 'DESC'), // $orderBy
+                999, // $limit
+                0 // $offset
+            );
+        return $this->render('DominickImageboardBundle:Thread:thread_view.html.twig', array(
+            'replies' => $replies,
+            'thread' => $thread,
+        ));
+    }
 }

@@ -76,11 +76,12 @@ class ReplyController extends Controller
 			$em->persist($reply);
 			$em->flush();
 
-			return $this->redirect($this->generateUrl('imageboard_homepage'));
+			return $this->redirect($this->generateUrl('imageboard_thread_view', array('id' => $id)));
 		}
 
-		return $this->render('DominickImageboardBundle:User:register.html.twig', array(
+		return $this->render('DominickImageboardBundle:Reply:reply_new.html.twig', array(
 			'form' => $form->createView(),
+            'id' => $id,
 		));
 	}
 }

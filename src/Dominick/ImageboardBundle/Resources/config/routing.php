@@ -25,9 +25,15 @@ $collection->add('imageboard_thread_new', new Route('/new', array(
 	'_controller' => 'DominickImageboardBundle:Thread:new',
 )));
 
+$collection->add('imageboard_thread_view', new Route('/v/{id}', array(
+    '_controller' => 'DominickImageboardBundle:Thread:viewThread',
+)));
+
 // Reply
 $collection->add('imageboard_reply_new', new Route('/reply/{id}', array(
 	'_controller' => 'DominickImageboardBundle:Reply:new',
 )));
+
+
 
 return $collection;
