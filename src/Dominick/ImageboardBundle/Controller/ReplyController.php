@@ -33,7 +33,7 @@ class ReplyController extends Controller
 
 		$form = $this->createFormBuilder($reply)
 			->add('message', 'textarea')
-			->add('image', 'file')
+			->add('image', 'file', array('required' => false))
 
 			->add('Reply', 'submit')
 			->getForm();
@@ -46,21 +46,25 @@ class ReplyController extends Controller
 
 			$reply = $form->getData();
 
-			// Move to this directory once upload is successful
-			$dir =  $this->get('kernel')->getRootDir() . '/../web'.'/img_data/reply/';
+			// Do these operations if image was submitted
+			//var_dump($form->getData()); die;
+			if(!empty($form->getData()->image)){
+				// Move to this directory once upload is successful
+				$dir =  $this->get('kernel')->getRootDir() . '/../web'.'/img_data/reply/';
 
-			// Sanitize and keep the original file name
-			$originalImageName = time().'_'.htmlspecialchars($form['image']->getData()->getClientOriginalName());
+				// Sanitize and keep the original file name
+				$originalImageName = time().'_'.htmlspecialchars($form['image']->getData()->getClientOriginalName());
 
-			// Move to the thread image directory
-			$form['image']->getData()->move($dir, $originalImageName);
-			// Set MD5 of the image
-			$reply->setMd5(md5_file($dir.$originalImageName));
-			// Set filesize of the image
-			$reply->setSize(filesize($dir.$originalImageName));
+				// Move to the thread image directory
+				$form['image']->getData()->move($dir, $originalImageName);
+				// Set MD5 of the image
+				$reply->setMd5(md5_file($dir.$originalImageName));
+				// Set filesize of the image
+				$reply->setSize(filesize($dir.$originalImageName));
 
-			// Set the file name in the database
-			$reply->setImage($originalImageName);
+				// Set the file name in the database
+				$reply->setImage($originalImageName);
+			}
 
 			// Get and set the current thread
 			$thread = $this->getDoctrine()

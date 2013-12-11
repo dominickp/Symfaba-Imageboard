@@ -17,18 +17,23 @@
                 <span class="threadId">{{thread.created|date('m-d-Y G:iA')}}</span>
             </div>
             <p class="message">{{thread.message}}</p>
-            {% if thread.getReplies|length > 3 %}
-                <div>
-                    <span class="moreReplies">There are {{thread.getReplies|length - 3}} replies not shown here. Click <a href="{{ path('imageboard_reply_new', {'id':thread.id}) }}">reply</a> to view the entire thread. </span>
-                </div>
-            {% endif %}
+
             {% for reply in replies %}
                 <div class="reply">
-                    <img class="replyImage" src="{{ asset('img_data/reply/'~reply.image) }}">
+                    {% if reply.image is not empty %}
+                        <img class="replyImage" src="{{ asset('img_data/reply/'~reply.image) }}">
+                    {% endif %}
                     <div class="replyHeader">
                         <span class="threadId">No.{{reply.id}}</span>
-                        <span class="author">{{reply.user.getDisplayName}}</span>
+                        <span class="author">
+                            {% if reply.user.getDisplayName is defined %}
+                                {{reply.user.getDisplayName}}
+                            {% else %}
+                                Anonymous
+                            {% endif %}
+                        </span>
                         <span class="threadId">{{reply.created|date('m-d-Y G:iA')}}</span>
+                        <span class="fileSize">{{ (reply.getSize/1024)|number_format(0) }} KB</span>
                     </div>
                     <p class="message">{{ reply.message }}</p>
                 </div>

@@ -32,14 +32,14 @@ class Reply
 
 	/**
 	 * @Assert\Length(max="255")
-	 * @ORM\Column(type="string", length=255)
+	 * @ORM\Column(type="string", length=255, nullable=true)
 	 * @var string
 	 */
 	protected $size;
 
 	/**
 	 * @Assert\Length(max="255")
-	 * @ORM\Column(type="string", length=255)
+	 * @ORM\Column(type="string", length=255, nullable=true)
 	 * @var string
 	 */
 	protected $md5;
@@ -52,9 +52,8 @@ class Reply
 	protected $thread;
 
 	/**
-	 * @Assert\NotBlank()
 	 * @Assert\Length(max="255")
-	 * @ORM\Column(type="string", length=255)
+	 * @ORM\Column(type="string", length=255, nullable=true)
 	 * @var string
 	 */
 	protected $image;

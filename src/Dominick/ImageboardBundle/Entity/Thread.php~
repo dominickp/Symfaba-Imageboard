@@ -235,7 +235,7 @@ class Thread
      * @param \Dominick\ImageboardBundle\Entity\Reply $replies
      * @return Thread
      */
-    public function addReplie(\Dominick\ImageboardBundle\Entity\Reply $replies)
+    public function addReplies(\Dominick\ImageboardBundle\Entity\Reply $replies)
     {
         $this->replies[] = $replies;
     
@@ -247,7 +247,7 @@ class Thread
      *
      * @param \Dominick\ImageboardBundle\Entity\Reply $replies
      */
-    public function removeReplie(\Dominick\ImageboardBundle\Entity\Reply $replies)
+    public function removeReplies(\Dominick\ImageboardBundle\Entity\Reply $replies)
     {
         $this->replies->removeElement($replies);
     }
@@ -261,4 +261,5 @@ class Thread
     {
         return $this->replies;
     }
+
 }

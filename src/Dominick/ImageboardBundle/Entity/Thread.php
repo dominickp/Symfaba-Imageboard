@@ -262,4 +262,27 @@ class Thread
         return $this->replies;
     }
 
+
+    /**
+     * Add replies
+     *
+     * @param \Dominick\ImageboardBundle\Entity\Reply $replies
+     * @return Thread
+     */
+    public function addReplie(\Dominick\ImageboardBundle\Entity\Reply $replies)
+    {
+        $this->replies[] = $replies;
+    
+        return $this;
+    }
+
+    /**
+     * Remove replies
+     *
+     * @param \Dominick\ImageboardBundle\Entity\Reply $replies
+     */
+    public function removeReplie(\Dominick\ImageboardBundle\Entity\Reply $replies)
+    {
+        $this->replies->removeElement($replies);
+    }
 }
