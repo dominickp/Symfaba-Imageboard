@@ -31,6 +31,20 @@ class Reply
 	protected $user;
 
 	/**
+	 * @Assert\Length(max="255")
+	 * @ORM\Column(type="string", length=255)
+	 * @var string
+	 */
+	protected $size;
+
+	/**
+	 * @Assert\Length(max="255")
+	 * @ORM\Column(type="string", length=255)
+	 * @var string
+	 */
+	protected $md5;
+
+	/**
 	 * @ORM\ManyToOne(targetEntity="Thread", inversedBy="replies")
 	 * @ORM\JoinColumn(name="thread_id", referencedColumnName="id")
 	 * @var Thread
@@ -217,5 +231,51 @@ class Reply
     public function getThread()
     {
         return $this->thread;
+    }
+
+    /**
+     * Set size
+     *
+     * @param string $size
+     * @return Reply
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return string 
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set md5
+     *
+     * @param string $md5
+     * @return Reply
+     */
+    public function setMd5($md5)
+    {
+        $this->md5 = $md5;
+    
+        return $this;
+    }
+
+    /**
+     * Get md5
+     *
+     * @return string 
+     */
+    public function getMd5()
+    {
+        return $this->md5;
     }
 }

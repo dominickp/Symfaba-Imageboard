@@ -51,8 +51,13 @@ class ReplyController extends Controller
 
 			// Sanitize and keep the original file name
 			$originalImageName = time().'_'.htmlspecialchars($form['image']->getData()->getClientOriginalName());
+
 			// Move to the thread image directory
 			$form['image']->getData()->move($dir, $originalImageName);
+			// Set MD5 of the image
+			$reply->setMd5(md5_file($dir.$originalImageName));
+			// Set filesize of the image
+			$reply->setSize(filesize($dir.$originalImageName));
 
 			// Set the file name in the database
 			$reply->setImage($originalImageName);

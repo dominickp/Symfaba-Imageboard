@@ -31,7 +31,21 @@ class Reply
 	protected $user;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Thread", inversedBy="threads")
+	 * @Assert\Length(max="255")
+	 * @ORM\Column(type="string", length=255)
+	 * @var string
+	 */
+	protected $size;
+
+	/**
+	 * @Assert\Length(max="255")
+	 * @ORM\Column(type="string", length=255)
+	 * @var string
+	 */
+	protected $md5;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Thread", inversedBy="replies")
 	 * @ORM\JoinColumn(name="thread_id", referencedColumnName="id")
 	 * @var Thread
 	 */
@@ -194,5 +208,28 @@ class Reply
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set thread
+     *
+     * @param \Dominick\ImageboardBundle\Entity\Thread $thread
+     * @return Reply
+     */
+    public function setThread(\Dominick\ImageboardBundle\Entity\Thread $thread = null)
+    {
+        $this->thread = $thread;
+    
+        return $this;
+    }
+
+    /**
+     * Get thread
+     *
+     * @return \Dominick\ImageboardBundle\Entity\Thread 
+     */
+    public function getThread()
+    {
+        return $this->thread;
     }
 }
