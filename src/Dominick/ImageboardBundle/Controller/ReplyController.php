@@ -46,24 +46,42 @@ class ReplyController extends Controller
 
 			$reply = $form->getData();
 
+
 			// Do these operations if image was submitted
-			//var_dump($form->getData()); die;
-			if(!empty($form->getData()->image)){
+			if(is_object($form['image']->getData())){
 				// Move to this directory once upload is successful
 				$dir =  $this->get('kernel')->getRootDir() . '/../web'.'/img_data/reply/';
-
 				// Sanitize and keep the original file name
 				$originalImageName = time().'_'.htmlspecialchars($form['image']->getData()->getClientOriginalName());
-
 				// Move to the thread image directory
 				$form['image']->getData()->move($dir, $originalImageName);
 				// Set MD5 of the image
 				$reply->setMd5(md5_file($dir.$originalImageName));
 				// Set filesize of the image
 				$reply->setSize(filesize($dir.$originalImageName));
-
 				// Set the file name in the database
 				$reply->setImage($originalImageName);
+
+				// Now work on the thumbnail
+				// Crop dimensions.
+				$width = 180;
+				$height = 180;
+				// Set the path to the image to resize
+				$input_image = @imagecreatefromjpeg($dir.$originalImageName);
+
+				// Get the size of the original image into an array
+				$size = getimagesize($dir.$originalImageName);
+
+				$thumbnail= imagecreatetruecolor($width,$height);
+				imagecopyresized( $thumbnail, $input_image, 0,0, 0, 0, $size[0], $size[1], $width, $height );
+
+				$jpgThumbnail = imagegd( $thumbnail, $originalImageName."_thumb.jpg" );
+				rename($originalImageName."_thumb.jpg", $dir.$originalImageName."_thumb.jpg");
+				// Move to thumbnail directory
+
+
+					imagedestroy( $thumbnail);
+
 			}
 
 			// Get and set the current thread
