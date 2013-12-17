@@ -6,6 +6,7 @@ namespace Dominick\ImageboardBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Dominick\ImageboardBundle\Entity\Thread;
 use Dominick\ImageboardBundle\Entity\Reply;
+use Dominick\ImageboardBundle\Image\ResizeImage;
 use Dominick\ImageboardBundle\Entity\User;
 use Dominick\ImageboardBundle\Entity\Role;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,24 +64,12 @@ class ReplyController extends Controller
 				$reply->setImage($originalImageName);
 
 				// Now work on the thumbnail
-				// Crop dimensions.
-				$width = 180;
-				$height = 180;
-				// Set the path to the image to resize
-				$input_image = @imagecreatefromjpeg($dir.$originalImageName);
+				$resize = new ResizeImage($dir.$originalImageName);
+				$resize->resizeTo(180, 180, 'maxWidth');
+				$resize->saveImage($dir.'thumb_'.$originalImageName);
 
-				// Get the size of the original image into an array
-				$size = getimagesize($dir.$originalImageName);
-
-				$thumbnail= imagecreatetruecolor($width,$height);
-				imagecopyresized( $thumbnail, $input_image, 0,0, 0, 0, $size[0], $size[1], $width, $height );
-
-				$jpgThumbnail = imagegd( $thumbnail, $originalImageName."_thumb.jpg" );
-				rename($originalImageName."_thumb.jpg", $dir.$originalImageName."_thumb.jpg");
-				// Move to thumbnail directory
-
-
-					imagedestroy( $thumbnail);
+				// Save thumbnail name to the database
+				$reply->setThumbnail('thumb_'.$originalImageName);
 
 			}
 

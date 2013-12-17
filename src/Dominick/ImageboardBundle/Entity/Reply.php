@@ -56,6 +56,13 @@ class Reply
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 * @var string
 	 */
+	protected $thumbnail;
+
+	/**
+	 * @Assert\Length(max="255")
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 * @var string
+	 */
 	protected $image;
 
 	/**
@@ -276,5 +283,28 @@ class Reply
     public function getMd5()
     {
         return $this->md5;
+    }
+
+    /**
+     * Set thumbnail
+     *
+     * @param string $thumbnail
+     * @return Reply
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    
+        return $this;
+    }
+
+    /**
+     * Get thumbnail
+     *
+     * @return string 
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
     }
 }

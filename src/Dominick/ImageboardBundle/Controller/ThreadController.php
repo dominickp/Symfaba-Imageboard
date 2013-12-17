@@ -5,6 +5,7 @@ namespace Dominick\ImageboardBundle\Controller;
 // Stuff for DB insert
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Dominick\ImageboardBundle\Entity\Thread;
+use Dominick\ImageboardBundle\Image\ResizeImage;
 use Dominick\ImageboardBundle\Entity\User;
 use Dominick\ImageboardBundle\Entity\Role;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,7 +58,13 @@ class ThreadController extends Controller
 			// Set the file name in the database
 			$thread->setImage($originalImageName);
 
+			// Now work on the thumbnail
+			$resize = new ResizeImage($dir.$originalImageName);
+			$resize->resizeTo(180, 180, 'maxWidth');
+			$resize->saveImage($dir.'thumb_'.$originalImageName);
 
+			// Save thumbnail name to the database
+			$thread->setThumbnail('thumb_'.$originalImageName);
 
 			// Get and set the current user
 			$currentUser = $this->getUser();

@@ -30,7 +30,6 @@ class Thread
 	 */
 	protected $user;
 
-
 	/**
 	 * @Assert\NotBlank()
 	 * @Assert\Length(max="255")
@@ -38,6 +37,28 @@ class Thread
 	 * @var string
 	 */
 	protected $image;
+
+	/**
+	 * @Assert\Length(max="255")
+	 * @ORM\Column(type="string", length=255)
+	 * @var string
+	 */
+	protected $thumbnail;
+
+
+	/**
+	 * @Assert\Length(max="255")
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 * @var string
+	 */
+	protected $size;
+
+	/**
+	 * @Assert\Length(max="255")
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 * @var string
+	 */
+	protected $md5;
 
 	/**
 	 * @Assert\NotBlank()
@@ -284,5 +305,74 @@ class Thread
     public function removeReplie(\Dominick\ImageboardBundle\Entity\Reply $replies)
     {
         $this->replies->removeElement($replies);
+    }
+
+    /**
+     * Set thumbnail
+     *
+     * @param string $thumbnail
+     * @return Thread
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    
+        return $this;
+    }
+
+    /**
+     * Get thumbnail
+     *
+     * @return string 
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * Set size
+     *
+     * @param string $size
+     * @return Thread
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return string 
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set md5
+     *
+     * @param string $md5
+     * @return Thread
+     */
+    public function setMd5($md5)
+    {
+        $this->md5 = $md5;
+    
+        return $this;
+    }
+
+    /**
+     * Get md5
+     *
+     * @return string 
+     */
+    public function getMd5()
+    {
+        return $this->md5;
     }
 }

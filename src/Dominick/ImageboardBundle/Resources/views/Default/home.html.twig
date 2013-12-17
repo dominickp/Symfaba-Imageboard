@@ -33,8 +33,9 @@
                         {% for reply in thread.previewReplies %}
                             <div class="reply">
                                 {% if reply.image is not empty %}
-                                    <img class="replyImage" src="{{ asset('img_data/reply/'~reply.image) }}">
-                                {% endif %}
+                                    <a class="replyImage" href="{{ asset('img_data/reply/'~reply.image) }}" target=_blank">
+                                        <img src="{{ asset('img_data/reply/'~reply.thumbnail) }}">
+                                    </a>                                {% endif %}
                                 <div class="replyHeader">
                                     <span class="threadId">No.{{reply.id}}</span>
                                     <span class="author">
