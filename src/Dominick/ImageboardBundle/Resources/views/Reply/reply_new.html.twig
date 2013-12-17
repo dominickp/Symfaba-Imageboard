@@ -3,9 +3,12 @@
 <div class="postBox">
     <form action="{{ path('imageboard_reply_new', {'id': id}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
-        {{ form_rest(form)}}
+
         {{ form_row(form.message) }}
         {{ form_row(form.image) }}
-        {{ form_row(form.Reply) }}
+        <div>
+            {{ form_widget(form.Reply, {'attr': {'class': 'btn btn-primary' }}) }}
+        </div>
+        {{ form_rest(form)}}
     </form>
 </div>

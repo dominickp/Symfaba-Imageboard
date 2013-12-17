@@ -51,4 +51,24 @@
     max-width: 600px;
     display: block;
     border: 1px solid #DDD;
+    margin-bottom: 20px;
+}
+
+.postBox div label {
+    width: 20%;
+}
+.postBox div input, .postBox div textarea {
+    width: 80%;
+    border: 1px solid #CCC;
+}
+.postBox div textarea {
+    min-height: 80px;
+}
+.postBox div input[type="file"] {
+    display:inline-block;
+    border:0;
+}
+.postBox button{
+    margin-left: 20%;
+    margin-top:10px;
 }
