@@ -60,7 +60,7 @@ class ThreadController extends Controller
 
 			// Now work on the thumbnail
 			$resize = new ResizeImage($dir.$originalImageName);
-			$resize->resizeTo(180, 180, 'maxWidth');
+			$resize->resizeTo(250, 250, 'maxWidth');
 			$resize->saveImage($dir.'thumb_'.$originalImageName);
 
 			// Save thumbnail name to the database

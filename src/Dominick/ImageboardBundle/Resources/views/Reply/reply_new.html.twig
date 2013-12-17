@@ -1,9 +1,11 @@
 <h2>New reply</h2>
 
-<form action="{{ path('imageboard_reply_new', {'id': id}) }}" method="post" {{ form_enctype(form) }}>
-    {{ form_errors(form) }}
-    {{ form_rest(form)}}
-    {{ form_row(form.message) }}
-    {{ form_row(form.image) }}
-    {{ form_row(form.Reply) }}
-</form>
+<div class="postBox">
+    <form action="{{ path('imageboard_reply_new', {'id': id}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
+        {{ form_rest(form)}}
+        {{ form_row(form.message) }}
+        {{ form_row(form.image) }}
+        {{ form_row(form.Reply) }}
+    </form>
+</div>

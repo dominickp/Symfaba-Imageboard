@@ -33,7 +33,7 @@ class ReplyController extends Controller
 		$reply = new Reply();
 
 		$form = $this->createFormBuilder($reply)
-			->add('message', 'textarea')
+			->add('message', 'textarea', array('required' => false))
 			->add('image', 'file', array('required' => false))
 
 			->add('Reply', 'submit')

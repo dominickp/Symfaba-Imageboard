@@ -66,9 +66,8 @@ class Reply
 	protected $image;
 
 	/**
-	 * @Assert\NotBlank()
 	 * @Assert\Length(max="1024")
-	 * @ORM\Column(type="string", length=1024)
+	 * @ORM\Column(type="string", length=1024, nullable=true))
 	 * @var string
 	 */
 	protected $message;

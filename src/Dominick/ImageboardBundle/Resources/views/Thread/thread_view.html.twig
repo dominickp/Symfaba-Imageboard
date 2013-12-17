@@ -9,11 +9,19 @@
         {{ render(controller('DominickImageboardBundle:Reply:new', {'id': thread.id})) }}
 
         <div class="thread" id="{{thread.id}}">
-            <img class="threadImage" src="{{ asset('img_data/thread/'~thread.image) }}">
+            <a class="threadImage" href="{{ asset('img_data/thread/'~thread.image) }}" target="_blank">
+                <img src="{{ asset('img_data/thread/'~thread.thumbnail) }}">
+            </a>
             <div class="threadHeader">
                 <a class="threadId" href="{{ path('imageboard_reply_new', {'id':thread.id}) }}">No.{{thread.id}}</a> // <span class="subject">{{thread.subject}}</span> <a class="btn btn-default replyButton" href="{{ path('imageboard_reply_new', {'id':thread.id}) }}"><span class="glyphicon glyphicon-comment"></span> Reply</a>
                 <br>
-                <span class="author">{{thread.user.getDisplayName}}</span>
+                <span class="author">
+                {% if thread.user.getDisplayName is defined %}
+                    {{thread.user.getDisplayName}}
+                {% else %}
+                    Anonymous
+                {% endif %}
+                </span>
                 <span class="threadId">{{thread.created|date('m-d-Y G:iA')}}</span>
             </div>
             <p class="message">{{thread.message}}</p>

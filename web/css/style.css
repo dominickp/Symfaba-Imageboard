@@ -44,3 +44,11 @@
     font-size: 90%;
     font-style: italic;
 }
+
+.postBox {
+    background: aliceblue;
+    padding: 20px;
+    max-width: 600px;
+    display: block;
+    border: 1px solid #DDD;
+}
