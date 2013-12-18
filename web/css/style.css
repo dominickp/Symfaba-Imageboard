@@ -81,3 +81,22 @@ h2{
     margin-left: 20%;
     margin-top:10px;
 }
+ul.nav{
+    float:right;
+    line-height: 53px;
+}
+ul.nav li{
+    display:inline-block;
+    width:auto;
+}
+
+.header {
+    padding: 30px 0px 20px 0px;
+}
+
+.status{
+    float:right;
+    display:inline-block;
+    color: darkslateblue;
+    font-size:90%;
+}
