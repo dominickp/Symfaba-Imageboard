@@ -57,7 +57,6 @@ h2{
 .postBox {
     background: aliceblue;
     padding: 20px;
-    max-width: 600px;
     display: block;
     border: 1px solid #DDD;
     margin-bottom: 20px;
@@ -99,4 +98,9 @@ ul.nav li{
     display:inline-block;
     color: darkslateblue;
     font-size:90%;
+}
+
+#footer{
+    margin:20px;
+    font-size:80%;
 }

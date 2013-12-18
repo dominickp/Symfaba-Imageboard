@@ -5,8 +5,13 @@
     {% block content_header '' %}
 
         {% block content %}
-
-        {{ render(controller('DominickImageboardBundle:Reply:new', {'id': thread.id})) }}
+        <div class="row">
+            <div class="col-md-6">
+                {{ render(controller('DominickImageboardBundle:Reply:new', {'id': thread.id})) }}
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
 
         <div class="thread" id="{{thread.id}}">
             <a class="threadImage" href="{{ asset('img_data/thread/'~thread.image) }}" target="_blank">

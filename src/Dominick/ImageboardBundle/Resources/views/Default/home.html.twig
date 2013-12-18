@@ -5,8 +5,15 @@
     {% block content_header '' %}
 
         {% block content %}
-
-            {{ render(controller('DominickImageboardBundle:Thread:new')) }}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ render(controller('DominickImageboardBundle:Thread:new')) }}
+                </div>
+                <div class="col-md-6">
+                    <h4>Welcome</h4>
+                    <p>This is a Futaba-style style imageboard based on Symfony. You may browse, reply to, or start new topics as a registered user or anonymously. </p>
+               </div>
+            </div>
 
             <div id="latestThreads">
 
