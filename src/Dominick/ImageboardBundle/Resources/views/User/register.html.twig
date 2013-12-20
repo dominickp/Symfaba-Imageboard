@@ -1,9 +1,35 @@
 {% extends "DominickImageboardBundle::layout.html.twig" %}
 
-{% block title "Roommate Expense Tracker" %}
+{% block title "Register" %}
 
     {% block content_header '' %}
 
         {% block content %}
-            {{ form(form) }}
+            <div class="col-md-6">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+                {{ form_label(form.username, 'Your email', {'label_attr': {'class': 'foo'}}) }}
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+
+                {{ form_label(form.displayname, 'Display name', {'label_attr': {'class': 'foo'}}) }}
+                {{ form_widget(form.displayname, {'attr': {'class': 'form-control'}}) }}
+
+                {% for passwordField in form.password %}
+                    <div class="form-field">
+                        {{ form_label(passwordField, null, { 'attr': {'class': 'form-label'} }) }}
+                        {{ form_widget(passwordField, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                {% endfor %}
+
+                <br>
+                <br>
+
+                <div>
+                    {{ form_widget(form.Register, {'attr': {'class': 'btn btn-primary' }}) }}
+                </div>
+            </div>
+
+            {{ form_rest(form)}}
+            {{ form_end(form) }}
         {% endblock %}

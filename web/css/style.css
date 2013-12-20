@@ -80,6 +80,11 @@ h2{
     margin-left: 20%;
     margin-top:10px;
 }
+
+.postBox div {
+    margin-bottom: 5px;
+}
+
 ul.nav{
     float:right;
     line-height: 53px;

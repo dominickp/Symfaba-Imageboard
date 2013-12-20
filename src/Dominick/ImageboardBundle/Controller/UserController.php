@@ -69,7 +69,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('imageboard_homepage'));
+            return $this->redirect($this->generateUrl('account_login'));
         }
 
         return $this->render('DominickImageboardBundle:User:register.html.twig', array(
