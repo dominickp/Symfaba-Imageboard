@@ -106,4 +106,19 @@ class ThreadController extends Controller
             'thread' => $thread,
         ));
     }
+
+	public function deleteAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$thread = $this->getDoctrine()->getRepository('DominickImageboardBundle:Thread')
+			->findOneBy(array(
+				'id'=>$id
+			));
+
+		$em->remove($thread);
+		$em->flush();
+
+		return $this->redirect($this->generateUrl('imageboard_homepage'));
+
+	}
+
 }

@@ -89,7 +89,7 @@ class Thread
 	protected $updated;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="thread")
+	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="thread", cascade="remove")
 	 * @var ArrayCollection
 	 */
 	protected $replies;

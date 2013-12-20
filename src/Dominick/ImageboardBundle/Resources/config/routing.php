@@ -40,6 +40,10 @@ $collection->add('imageboard_reply_new', new Route('/reply/{id}', array(
 	'_controller' => 'DominickImageboardBundle:Reply:new',
 )));
 
+// Mod actions
+$collection->add('imageboard_thread_delete', new Route('/delete/thread/{id}', array(
+	'_controller' => 'DominickImageboardBundle:Thread:delete',
+)));
 
 
 return $collection;

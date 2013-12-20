@@ -38,6 +38,7 @@ h2{
     border-bottom:1px solid #CCC;
     margin-bottom:15px;
     padding-bottom: 15px;
+    position:relative;
 }
 .thread .threadHeader, .reply .replyHeader{
     margin-bottom:15px;
@@ -60,6 +61,12 @@ h2{
     display: block;
     border: 1px solid #DDD;
     margin-bottom: 20px;
+}
+
+.deleteButton{
+    position: absolute;
+    right:10px;
+    bottom: 20px;
 }
 
 .postBox div label {
