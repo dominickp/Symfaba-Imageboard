@@ -9,6 +9,12 @@ $collection = new RouteCollection();
 $collection->add('imageboard_homepage', new Route('/', array(
     '_controller' => 'DominickImageboardBundle:Default:index',
 )));
+// View pages
+
+$collection->add('imageboard_next', new Route('/p/{pageNumber}', array(
+    '_controller' => 'DominickImageboardBundle:Default:next',
+)));
+
 
 // User
 $collection->add('imageboard_user_register', new Route('/register/', array(

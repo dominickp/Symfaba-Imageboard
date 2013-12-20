@@ -68,5 +68,9 @@
                     </div>
 
                 {% endfor %}
+
+                <div class="pagination">
+                    <a class="threadId" href="{{ path('imageboard_next', {'pageNumber':nextPage}) }}">Next Page</a>
+                </div>
             </div>
         {% endblock %}
