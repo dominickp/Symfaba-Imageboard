@@ -32,7 +32,7 @@
                 </span>
                 <span class="threadId">{{thread.created|date('m-d-Y G:iA')}}</span>
             </div>
-            <p class="message">{{thread.message}}</p>
+            <p class="message">{{thread.message|nl2br}}</p>
 
             {% for reply in replies %}
                 <div class="reply">
@@ -60,7 +60,7 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="btn btn-danger btn-xs deleteButton" href="{{ path('imageboard_reply_delete', {'threadId':thread.id, 'replyId':reply.id}) }}">Delete Reply</a>
                     {% endif %}
-                    <p class="message">{{ reply.message }}</p>
+                    <p class="message">{{ reply.message|nl2br }}</p>
                 </div>
                 <div class="clearfix"></div>
             {% endfor %}
