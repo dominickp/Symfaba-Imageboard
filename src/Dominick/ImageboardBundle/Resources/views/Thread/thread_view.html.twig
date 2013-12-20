@@ -18,6 +18,9 @@
                 <img src="{{ asset('img_data/thread/'~thread.thumbnail) }}">
             </a>
             <div class="threadHeader">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-danger btn-xs deleteButton" href="{{ path('imageboard_thread_delete', {'id':thread.id}) }}">Delete Thread</a>
+                {% endif %}
                 <a class="threadId" href="{{ path('imageboard_reply_new', {'id':thread.id}) }}">No.{{thread.id}}</a> // <span class="subject">{{thread.subject}}</span> <a class="btn btn-default replyButton" href="{{ path('imageboard_reply_new', {'id':thread.id}) }}"><span class="glyphicon glyphicon-comment"></span> Reply</a>
                 <br>
                 <span class="author">
@@ -50,6 +53,9 @@
                         <span class="threadId">{{reply.created|date('m-d-Y G:iA')}}</span>
                         <span class="fileSize">{{ (reply.getSize/1024)|number_format(0) }} KB</span>
                     </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-danger btn-xs deleteButton" href="{{ path('imageboard_reply_delete', {'threadId':thread.id, 'replyId':reply.id}) }}">Delete Reply</a>
+                    {% endif %}
                     <p class="message">{{ reply.message }}</p>
                 </div>
                 <div class="clearfix"></div>

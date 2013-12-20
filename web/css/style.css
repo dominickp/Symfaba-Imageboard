@@ -33,8 +33,9 @@ h2{
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px;
+    position: relative;
 }
-#latestThreads .thread{
+.thread{
     border-bottom:1px solid #CCC;
     margin-bottom:15px;
     padding-bottom: 15px;

@@ -103,4 +103,20 @@ class ReplyController extends Controller
             'id' => $id,
 		));
 	}
+
+	public function deleteAction($threadId, $replyId){
+		$em = $this->getDoctrine()->getManager();
+		$thread = $this->getDoctrine()->getRepository('DominickImageboardBundle:Reply')
+			->findOneBy(array(
+				'id'=>$replyId,
+				'thread'=>$threadId
+			));
+
+		$em->remove($thread);
+		$em->flush();
+
+		return $this->redirect($this->generateUrl('imageboard_thread_view', array('id' => $threadId)));
+
+	}
+
 }

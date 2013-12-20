@@ -44,6 +44,9 @@ $collection->add('imageboard_reply_new', new Route('/reply/{id}', array(
 $collection->add('imageboard_thread_delete', new Route('/delete/thread/{id}', array(
 	'_controller' => 'DominickImageboardBundle:Thread:delete',
 )));
+$collection->add('imageboard_reply_delete', new Route('/delete/thread/{threadId}/reply/{replyId}', array(
+	'_controller' => 'DominickImageboardBundle:Reply:delete',
+)));
 
 
 return $collection;
