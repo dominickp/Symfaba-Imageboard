@@ -42,7 +42,9 @@
                         </a>
                     {% endif %}
                     <div class="replyHeader">
-                        <span class="threadId">No.{{reply.id}}</span>
+                        <span class="threadId">
+                            <a href="#" data-id="{{reply.id}}">No.{{reply.id}}</a>
+                        </span>
                         <span class="author">
                             {% if reply.user.getDisplayName is defined %}
                                 {{reply.user.getDisplayName}}
@@ -51,7 +53,9 @@
                             {% endif %}
                         </span>
                         <span class="threadId">{{reply.created|date('m-d-Y G:iA')}}</span>
-                        <span class="fileSize">{{ (reply.getSize/1024)|number_format(0) }} KB</span>
+                        {% if (reply.getSize/1024)|number_format(0) != 0 %}
+                            <span class="fileSize">{{ (reply.getSize/1024)|number_format(0) }} KB</span>
+                        {% endif %}
                     </div>
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="btn btn-danger btn-xs deleteButton" href="{{ path('imageboard_reply_delete', {'threadId':thread.id, 'replyId':reply.id}) }}">Delete Reply</a>

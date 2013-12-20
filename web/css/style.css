@@ -114,6 +114,7 @@ ul.nav li{
 }
 
 #footer{
-    margin:20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
     font-size:80%;
 }
