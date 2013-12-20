@@ -70,7 +70,31 @@
                 {% endfor %}
 
                 <div class="pagination">
-                    <a class="threadId" href="{{ path('imageboard_next', {'pageNumber':nextPage}) }}">Next Page</a>
+
+                    <ul class="pagination">
+                        {% if nextPage != 1 %}
+                            <li>
+                                <a href="{{ path('imageboard_next', {'pageNumber':nextPage-2}) }}">Previous Page</a>
+                            </li>
+                        {% endif %}
+                        {% for i in 0..totalPages %}
+                            <li>
+                                <a href="{{ path('imageboard_next', {'pageNumber':i}) }}">
+                                    {% if i == 0 %}
+                                        Home
+                                    {% else %}
+                                        {{ i }}
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        {% if totalPages != nextPage-1 %}
+                            <li>
+                                <a href="{{ path('imageboard_next', {'pageNumber':nextPage}) }}">Next Page</a>
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
+
             </div>
         {% endblock %}

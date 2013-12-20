@@ -8,7 +8,6 @@ This is a Symfony-based imageboard, modelled after Futaba style imageboards such
 
 ### Todo
 - Basic mod panel to remove posts/threads
-- Pagination for thread browsing
 - Catalog mode
 - Add some more javascript to better fulfill the project requirements
 - Duplicate image detection with MD5

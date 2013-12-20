@@ -8,6 +8,9 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+
+		$limit = 10;
+
 		// Display the last 10 threads
 		$threads = $this->getDoctrine()
 			->getRepository('DominickImageboardBundle:Thread')
@@ -15,7 +18,7 @@ class DefaultController extends Controller
 			->findBy(
 				array(), // $where
 				array('updated' => 'DESC'), // $orderBy
-				10, // $limit
+				$limit, // $limit
 				0 // $offset
 			);
 
@@ -36,7 +39,20 @@ class DefaultController extends Controller
             $thread->previewReplies = $previewReplies;
         }
 
-        return $this->render('DominickImageboardBundle:Default:home.html.twig', array('threads' => $threads, 'nextPage' => 1));
+		// Find the total amount of threads for pagination
+		$allThreads = $this->getDoctrine()->getManager()
+			->getRepository('DominickImageboardBundle:Thread')
+			->findAll()
+			;
+		$threadTotal = count($allThreads);
+		// Determine number of pages
+		$numOfPages = round($threadTotal / $limit, 0, PHP_ROUND_HALF_UP);
+
+        return $this->render('DominickImageboardBundle:Default:home.html.twig', array(
+			'threads' => $threads,
+			'nextPage' => 1,
+			'totalPages' => $numOfPages-1
+		));
     }
 
 	public function nextAction($pageNumber)
@@ -73,7 +89,21 @@ class DefaultController extends Controller
 			$thread->previewReplies = $previewReplies;
 		}
 
-		return $this->render('DominickImageboardBundle:Default:home.html.twig', array('threads' => $threads, 'nextPage' => $pageNumber+1));
+		// Find the total amount of threads for pagination
+		$allThreads = $this->getDoctrine()->getManager()
+			->getRepository('DominickImageboardBundle:Thread')
+			->findAll()
+		;
+		$threadTotal = count($allThreads);
+		// Determine number of pages
+		$numOfPages = round($threadTotal / $limit, 0, PHP_ROUND_HALF_UP);
+
+
+		return $this->render('DominickImageboardBundle:Default:home.html.twig', array(
+			'threads' => $threads,
+			'nextPage' => $pageNumber+1,
+			'totalPages' => $numOfPages-1
+		));
 
 	}
 }
