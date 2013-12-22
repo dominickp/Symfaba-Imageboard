@@ -124,7 +124,7 @@ ul.nav li{
     max-height: 800px;
 }
 
-.threadImage img {
+.threadImage img, .replyImage img {
     max-height: 100%;
     max-width: 100%;
 }
