@@ -48,6 +48,8 @@ class DefaultController extends Controller
 		// Determine number of pages
 		$numOfPages = round($threadTotal / $limit, 0, PHP_ROUND_HALF_UP);
 
+		if($numOfPages == 0) $numOfPages = 1;
+
         return $this->render('DominickImageboardBundle:Default:home.html.twig', array(
 			'threads' => $threads,
 			'nextPage' => 1,
@@ -99,7 +101,6 @@ class DefaultController extends Controller
 		$numOfPages = round($threadTotal / $limit, 0, PHP_ROUND_HALF_UP);
 
 		if($numOfPages == 0) $numOfPages = 1;
-
 
 		return $this->render('DominickImageboardBundle:Default:home.html.twig', array(
 			'threads' => $threads,
