@@ -88,7 +88,7 @@
                                 <a href="{{ path('imageboard_next', {'pageNumber':i}) }}">
                                     {% if i == 0 %}
                                         Home
-                                    {% elseif totalPages != -1 %}
+                                    {% else %}
                                         {{ i }}
                                     {% endif %}
                                 </a>
