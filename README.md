@@ -23,4 +23,4 @@ This is a Symfony-based imageboard, modelled after Futaba style (http://en.wikip
 The majority of my code can be found in my bundle:
 /src/Dominick/ImageboardBundle/
 
-I had to scale back my plans for this project because I ran out of time, but I plan to continue it after the semester. I feel like I could have used more Javascript features but I had to make sure the core elements were working. Pagination and administration ended up taking a lot of time to figure out. You can login as an administrator/mod by using the login "administrator@example.com" with password "dwa152013".
+I had to scale back my plans for this project because I ran out of time, but I plan to continue it after the semester. I feel like I could have used more Javascript features but I had to make sure the core elements were working. Pagination and administration ended up taking a lot of time to figure out. You can login as an administrator/mod by using the login "administrator@example.com" with password "dwa152013". To delete individual posts, make sure you are in the thread view by clicking "Reply" on a thread.
